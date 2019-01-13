@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="fragments/headerinc :: head" />
+
+<body>
+
+	<!-- Navigation -->
+	<header th:replace="fragments/header :: header"></header>
+
+	<!-- Page Header -->
+	<header class="masthead"
+		style="background-image: url('img/home-bg.jpg')">
+		<div class="overlay"></div>
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-8 col-md-10 mx-auto">
+					<div class="site-heading">
+						<h1>Configuration</h1>
+						<span class="subheading">A Blog Theme by Start Bootstrap</span>
+					</div>
+				</div>
+			</div>
+		</div>
+	</header>
+
+	<!-- Main Content -->
+	<div class="container">
+		<div class="row">
+			<div class="col-lg-8 col-md-10 mx-auto">
+<!--poniższa linijka wyświetli się, jeśli lista użytkowników będzie pusta-->
+				<div th:if="${#lists.isEmpty(users)}">Empty user list!</div>
+				<!--poniższa linijka wyświetli się, jeśli lista użytkowników będzie uzupełniona-->
+				<div th:if="${not #lists.isEmpty(users)}">
+				<table class="table table-striped">
+					<tr>
+						<th>Name</th>
+						<th>Last name</th>
+						<th>Email</th>
+						<th>Active</th>
+						<th>Role</th>
+						<th>View</th>
+						<th>Edit</th>
+						<th>Delete</th>
+
+
+					</tr>
+					<tr th:each="user : ${users}">
+						<td th:text="${user.name}"/>
+						<td th:text="${user.lastName}"/>
+						<td th:text="${user.Email}"/>
+						<td th:text="${user.Active}"/>
+						<td th:text="${user.role.role}"/>
+						<td><a th:href="${'/users/'+ user.id}">View</a></td>
+						<td><a th:href="${'/users/edit/' + user.id}">Edit</a></td>
+						<td><a th:href="${'/users/delete/' + user.id}">Delete</a></td>
+
+					</tr>
+
+				</table>
+
+</div>
+
+
+			</div>
+		</div>
+	</div>
+
+	<!-- Footer -->
+	<div th:replace="fragments/footer :: footer"></div>
+
+</body>
+
+</html>

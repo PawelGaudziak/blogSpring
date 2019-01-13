@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+  <head th:replace="fragments/headerinc :: head"/>
+
+  <body>
+
+    <!-- Navigation -->
+	<header  th:replace="fragments/header :: header"></header>
+
+    <!-- Page Header -->
+    <header class="masthead" style="background-image: url('img/home-bg.jpg')">
+      <div class="overlay"></div>
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-8 col-md-10 mx-auto">
+            <div class="site-heading">
+              <h1>Login</h1>
+            </div>
+          </div>
+        </div>
+      </div>
+    </header>
+
+
+   <!-- Login Content -->
+   <div class="container">
+      <div class="row">
+        <div class="col-lg-8 col-md-10 mx-auto">
+
+			<form name = "login" th:action="@{/login}" method="post">
+
+
+                <div th:if="${param.error}">
+
+                    <div class="alert alert-danger">
+                    Email or Password invalid, please verify gamoniu!!!
+
+                </div>
+                </div>
+                <div class="control-group">
+                    <div class="form-group floating-label-form-group controls">
+                        <label>Email Address</label>
+                        <input type="email" name="email" class="form-control" placeholder="Email Address" id="email" />
+                    </div>
+                </div>
+
+                <div class="control-group">
+                    <div class="form-group floating-label-form-group controls">
+                        <label>password</label>
+                        <input type="password" name="password" class="form-control" placeholder="password" id="password"/>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <button type="submit" class="btn btn-primary" id="loginButton">Login</button>
+                </div>
+
+
+            </form>
+
+        </div>
+      </div>
+    </div>
+
+   <!-- Footer -->
+   <div th:replace="fragments/footer :: footer"></div>
+
+  </body>
+
+</html>
